@@ -1,8 +1,8 @@
-# Sumi OS — Claude Fable 5.2 が空のフォルダーから作った試作OS
+# Sumi OS — Claude Fable 5.2 がゼロから作った試作OS
 
 YouTube「海外テックの『これマジ?』」の実演で使った成果物と記録です。
 
-Anthropic が 2026年11月9日に公開した Claude Fable 5.2 に、空のフォルダーと課題文1通([prompts/os.txt](prompts/os.txt))だけを渡し、x86 PC(QEMU)で起動するデスクトップOSを作らせました。名前・見た目・作業の分け方はモデルが決めています。
+Anthropic が 2026年11月9日に公開した Claude Fable 5.2 に、空のフォルダーと課題文1通([prompts/os.txt](prompts/os.txt))だけを渡し、x86 PC(QEMU)で起動するデスクトップOSを作ってもらいました。名前・見た目・作業の分け方はモデルが決めています。
 
 ![login](screenshots/login.png)
 ![desktop](screenshots/terminal.png)
