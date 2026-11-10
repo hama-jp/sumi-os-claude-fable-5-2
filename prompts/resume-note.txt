@@ -1,0 +1,3 @@
+
+---
+Note from the experiment harness: your earlier session on this task was cut off by an account usage limit after about 31 minutes of work, and a second session that continued it was cut off the same way after another 20 minutes. This folder contains everything you had written up to that point; any subagents that were running then were lost, and their unfinished work may be incomplete. Nothing has been changed since. The task and the definition of done above are unchanged. Continue from the current state of the folder.

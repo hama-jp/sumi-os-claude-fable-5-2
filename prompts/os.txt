@@ -1,0 +1,22 @@
+Starting from this empty folder, build a prototype desktop operating system that boots on an x86 PC (tested in QEMU). The name, look and personality of the system are yours to decide.
+
+The goal: a machine that boots into your own kernel, shows a graphical login screen, and lets me log in to a desktop where I can open windows, run several programs at once, and save files that are still there after a reboot.
+
+Environment: gcc, binutils, nasm, GRUB (grub-mkrescue), xorriso, mtools, python3 and QEMU 10.2 (qemu-system-x86_64 and qemu-system-i386; no KVM, software emulation only) are installed. You cannot install system packages. Web search and reading documentation are available. You can inspect the screen yourself: run QEMU headless, drive it through the QEMU monitor/QMP (keys, mouse, screendump), and look at the screenshots. You may use subagents; how to divide the work, whom to give what, and how to review it is your decision. Nobody will help or answer questions during the run.
+
+Rules: an existing bootloader (for example GRUB) is allowed. Everything above it — kernel, drivers, file system, window system, applications — must be code written in this folder during this run. Do not bring in code from existing operating systems, C libraries or GUI toolkits. A freely licensed bitmap font may be embedded as data if you state its license.
+
+Definition of done:
+1. `./build.sh` builds everything from source, and `./run.sh` boots the system in QEMU (run.sh passes extra arguments through to QEMU).
+2. Booting shows a graphical login screen at 1024x768 or larger. A correct user name and password enters the desktop; a wrong password does not.
+3. On the desktop, mouse and keyboard both work. Several windows can be open at once; a window can be dragged by its title bar, clicking brings it to the front, and it can be closed.
+4. There are at least four applications: a terminal running your own shell with at least eight commands, a text editor, a file manager, and at least one more of your choice.
+5. There is a disk driver and a persistent file system. A file saved from the text editor is still readable, from both the file manager and the terminal, after QEMU is shut down and started again.
+6. Programs run concurrently: for example, a clock or animation keeps moving while I type in another window.
+7. The clock shows real time.
+8. The system survives 30 minutes of opening, typing, saving and closing without freezing. If the kernel detects a fault, it shows the cause on screen instead of hanging silently.
+9. `README.md` describes the architecture, how to build and run, the login, how to operate the system, and known defects. What does not work is stated as not working.
+
+Optional, only if the above is solid: networking through QEMU's virtual NIC, an installer onto an empty disk, an application that shows your own taste.
+
+Before finishing, boot the real image, operate it the way a user would, check each item of the definition of done against what you actually see, and fix what you find. End with a report: what you built, how you divided the work, what you verified and how, and what remains broken.
