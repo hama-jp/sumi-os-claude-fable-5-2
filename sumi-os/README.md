@@ -113,7 +113,7 @@ spaces. Commands:
 | accounts | `passwd`, `adduser NAME` |
 | machine | `install`, `format` (erases the disk after a confirmation), `logout`, `reboot`, `shutdown` |
 | testing | `crash null\|div\|op` (fault inside the terminal: the kernel closes it and reports), `crash loop` (hang: kill it from Monitor), `crash kernel\|panic` (kernel stop screen) |
-NETCMD_ROW
+| network | `ifconfig` (adapter, addresses, packet counters), `ping HOST [COUNT]`, `nslookup NAME`, `wget URL [FILE]` (fetches an `http://` URL and prints it or saves it to FILE) |
 
 There are no pipes, no variables and no scripts.
 
@@ -252,7 +252,16 @@ from a per-thread queue (`gui_get_event`). `gui/widgets.c` provides buttons, tex
 scroll bars and the modal message, input and file dialogs; `gui/desktop.c` is the session:
 wallpaper (drawn procedurally at boot), login screen, panel, dock, launcher menu.
 
-NETWORK_PLACEHOLDER
+**Networking** (`kernel/net.c`). A driver for the Intel e1000 (82540EM) adapter, which is
+QEMU's default network card, and a small IPv4 stack: Ethernet II, ARP, IPv4, ICMP echo, UDP,
+a DHCP client, a DNS resolver and a TCP client. The adapter runs with its interrupts masked;
+a kernel thread polls the receive ring every 10 ms and runs the protocol timers, and a
+program that waits for an answer polls the ring itself so replies are not delayed. All
+state is static and protected by one mutex held only for short sections, so a program can
+be killed while waiting without leaving the stack locked; the sockets of programs that no
+longer exist are reclaimed. Every length and offset read from a received packet is checked
+against the frame size. If no DHCP answer arrives, Sumi falls back to QEMU's user-mode
+addresses (10.0.2.15, gateway 10.0.2.2, DNS 10.0.2.3).
 
 ---------------------------------------------------------------------------------------
 
@@ -338,7 +347,9 @@ Sumi is a prototype. What follows does **not** work or is deliberately missing.
 * Logging out, restarting or shutting down asks once if windows are open, then ends all
   programs without giving each one the chance to save.
 * The clock is the PC's real-time clock read as local time; there are no time zones.
-NETDEFECTS
+* Networking: IPv4 only; fragmented packets are dropped; TCP is client-side only (no
+  listening sockets, so Sumi cannot act as a server); `wget` speaks plain `http://` only
+  (no HTTPS); only the Intel e1000 adapter is supported.
 
 ---------------------------------------------------------------------------------------
 

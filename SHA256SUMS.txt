@@ -1,3 +1,4 @@
+# SHA-256 of sumi-os/ as the run left it (2026-11-10 15:28). README.md and apps/terminal.c.orig differ in this repository; see README.md.
 00748ab253017eb3887bf616f59c0e13bb371132bb100c40317ce11c484db94e  ./apps/clock.c
 9d47aa7aa682e07010e41106314da602b833d7495f9b209fc07524897666da67  ./apps/editor.c
 197c96474c96a8611af8b80d5e6eebb37e34ccea8b61756240392f1645b961eb  ./apps/files.c

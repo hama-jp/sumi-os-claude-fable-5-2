@@ -35,7 +35,8 @@ cd sumi-os
 - 実行は Claude Code の1つのセッションを、利用上限による中断をはさんで3回(31分・20分・45分、計96分)。モデルは延べ12体のサブエージェントを起動しました。
 - C と NASM で約9,400行。カーネル、割り込み、スケジューラー、ディスクとネットワークのドライバー、ファイルシステム、ウィンドウシステム、アプリ9つ、インストーラー。
 - 完了の定義9項目は、制作側が QEMU で操作して確かめました([RESULTS.md](RESULTS.md))。
-- 作業は利用上限で途中で止まったため、モデルの完了報告はありません。sumi-os/README.md には書きかけの目印が2か所残っています。
+- モデルの完了報告はありません。
+- コードは、モデルが書いたまま一切直していません。公開にあたって制作側が変えたのは2点だけです: sumi-os/README.md の通信の説明で未記入だった3か所を、sumi-os/kernel/net.c と apps/terminal.c の内容から補ったこと、作業用に残っていた apps/terminal.c.orig を外したこと。変更前の値は SHA256SUMS.txt に残しています。
 - 公式発表の事例(1,000体超のサブエージェント、8日間)の再現ではありません。規模はずっと小さく、実行は1回だけです。
 
 ## フォント
@@ -44,4 +45,4 @@ sumi-os/ に同梱のフォントは Terminus Font(SIL Open Font License 1.1、[
 
 ---
 
-**English summary.** Sumi OS is a prototype desktop operating system written by Claude Fable 5.2 (Claude Code, effort high) from an empty folder and a single prompt ([prompts/os.txt](prompts/os.txt)), in 96 minutes of work split over three sessions by account usage limits. About 9,400 lines of C and NASM: kernel, drivers, file system, window system, nine applications and an installer. The source is published exactly as the run left it; nothing was fixed by hand. Checks made by the video's producer are in [RESULTS.md](RESULTS.md) (Japanese).
+**English summary.** Sumi OS is a prototype desktop operating system written by Claude Fable 5.2 (Claude Code, effort high) from an empty folder and a single prompt ([prompts/os.txt](prompts/os.txt)), in 96 minutes of work split over three sessions by account usage limits. About 9,400 lines of C and NASM: kernel, drivers, file system, window system, nine applications and an installer. The code is published exactly as the run left it; no code was changed by hand. For publication the producer only filled three unfinished places in the networking part of sumi-os/README.md from the source (kernel/net.c, apps/terminal.c) and removed a leftover apps/terminal.c.orig; SHA256SUMS.txt lists the files as the run left them. Checks made by the video's producer are in [RESULTS.md](RESULTS.md) (Japanese).
